@@ -24,50 +24,19 @@ from pyupgrade._token_helpers import indented_amount
 # Using reorder-python-imports==3.13.0
 REMOVALS = {
     (3,): {
-        '__future__': {
-            'absolute_import', 'division', 'generators', 'nested_scopes',
-            'print_function', 'unicode_literals', 'with_statement',
-        },
-        'builtins': {
+        'six.moves.builtins': {
             '*', 'ascii', 'bytes', 'chr', 'dict', 'filter', 'hex', 'input',
             'int', 'isinstance', 'list', 'map', 'max', 'min', 'next', 'object',
             'oct', 'open', 'pow', 'range', 'round', 'str', 'super', 'zip',
         },
-        'io': {'open'},
         'six': {'callable', 'next'},
         'six.moves': {'filter', 'input', 'map', 'range', 'zip'},
     },
     (3, 7): {'__future__': {'generator_stop'}},
 }
-REMOVALS[(3,)]['six.moves.builtins'] = REMOVALS[(3,)]['builtins']
+REMOVALS[(3,)]['six.moves.builtins']
 REPLACE_EXACT = {
     (3,): {
-        ('collections', 'AsyncGenerator'): 'collections.abc',
-        ('collections', 'AsyncIterable'): 'collections.abc',
-        ('collections', 'AsyncIterator'): 'collections.abc',
-        ('collections', 'Awaitable'): 'collections.abc',
-        ('collections', 'ByteString'): 'collections.abc',
-        ('collections', 'Callable'): 'collections.abc',
-        ('collections', 'Collection'): 'collections.abc',
-        ('collections', 'Container'): 'collections.abc',
-        ('collections', 'Coroutine'): 'collections.abc',
-        ('collections', 'Generator'): 'collections.abc',
-        ('collections', 'Hashable'): 'collections.abc',
-        ('collections', 'ItemsView'): 'collections.abc',
-        ('collections', 'Iterable'): 'collections.abc',
-        ('collections', 'Iterator'): 'collections.abc',
-        ('collections', 'KeysView'): 'collections.abc',
-        ('collections', 'Mapping'): 'collections.abc',
-        ('collections', 'MappingView'): 'collections.abc',
-        ('collections', 'MutableMapping'): 'collections.abc',
-        ('collections', 'MutableSequence'): 'collections.abc',
-        ('collections', 'MutableSet'): 'collections.abc',
-        ('collections', 'Reversible'): 'collections.abc',
-        ('collections', 'Sequence'): 'collections.abc',
-        ('collections', 'Set'): 'collections.abc',
-        ('collections', 'Sized'): 'collections.abc',
-        ('collections', 'ValuesView'): 'collections.abc',
-        ('pipes', 'quote'): 'shlex',
         ('six', 'BytesIO'): 'io',
         ('six', 'StringIO'): 'io',
         ('six', 'wraps'): 'functools',
@@ -276,7 +245,6 @@ REPLACE_MODS = {
     'six.moves.winreg': '_winreg',
     'six.moves.xmlrpc_client': 'xmlrpc.client',
     'six.moves.xmlrpc_server': 'xmlrpc.server',
-    'xml.etree.cElementTree': 'xml.etree.ElementTree',
 }
 # END GENERATED
 

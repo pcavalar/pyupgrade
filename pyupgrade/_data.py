@@ -119,7 +119,12 @@ def _import_plugins() -> None:
     plugins_path = _plugins.__path__
     mod_infos = pkgutil.walk_packages(plugins_path, f'{_plugins.__name__}.')
     for _, name, _ in mod_infos:
-        __import__(name, fromlist=['_trash'])
+        # HACK: load only the modules related to six.
+
+        # Note that this is not sufficient because some of the six
+        # plugins load other plugins we don't want
+        if name.startswith(f'{_plugins.__name__}.six'):
+            __import__(name, fromlist=['_trash'])
 
 
 _import_plugins()

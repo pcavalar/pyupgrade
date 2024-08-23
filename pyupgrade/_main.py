@@ -324,7 +324,6 @@ def _fix_file(filename: str, args: argparse.Namespace) -> int:
             keep_runtime_typing=args.keep_runtime_typing,
         ),
     )
-    contents_text = _fix_tokens(contents_text)
 
     if filename == '-':
         print(contents_text, end='')
